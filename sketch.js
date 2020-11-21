@@ -26,7 +26,7 @@ function setup(){
     pig1 = new Pig(810, 350);
     log1 = new Log(810,260,300, PI/2);
 
-    box3 = new Box(700,240,70,70);
+    box3 = new Box(700,240,70,70); 
     box4 = new Box(920,240,70,70);
     pig3 = new Pig(810, 220);
 
@@ -38,7 +38,7 @@ function setup(){
 
     bird = new Bird(100,100);
 
-    c1 = new chain(bird.body, ConstraintLog.body);
+    c1 = new slingshot(bird.body, {x:100, y:200});
 
 }
 
@@ -66,6 +66,14 @@ function draw(){
     bird.display();
     platform.display();
 
-    ConstraintLog.display();
+    //ConstraintLog.display();
     c1.display();
+}
+
+function mouseDragged(){
+    Matter.Body.setPosition(bird.body, {x:mouseX, y:mouseY});
+}
+
+function mouseReleased(){
+    c1.fly();
 }
